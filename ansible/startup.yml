@@ -1,0 +1,11 @@
+---
+- name: Update Local Ubuntu
+  hosts: localhost
+
+  tasks:
+  - name: Set TimeZone to Australia/Brisbane
+    become: true
+    timezone:
+      name: Australia/Brisbane
+
+# Create your dummy file creation code here or use a role
