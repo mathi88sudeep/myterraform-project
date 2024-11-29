@@ -4,6 +4,7 @@
 * share the repo with your examiner
 
 ## Objective:
+
 This practical test will assess your ability to work with 
 * Git (forking, pull, push, commit, tagging)
 * Terraform (modules, data resources, variables etc)
@@ -21,6 +22,7 @@ The test consists of multiple tasks, and you will be scored on your ability to:
 
 
 ## Assumptions
+
 Your code will be run on a fresh WSL Ubuntu in a windows environment.
 
 1. make has been installed via apt
@@ -50,6 +52,7 @@ aws_session_token=
 ## Tasks Overview:
 
 #### CoPilot/ChatGPT
+
 *For any tasks where you use CoPilot or ChatGPT to generate the code, feel free to do so, however you will still be expected to justify your solution approach and workings*
 
 *Feel free to include the prompts used in the documentation for unfamiliar sections of the test*
@@ -65,6 +68,7 @@ Automate the initialization, planning, execution, and removal processes in a `Ma
     (5 points) Ensure it works with general configurations and includes other steps.
 
 ##### 1.1. To Mark this section we will:
+
 Run from the repo *root* folder:
   * `make <your documented options>`
   * examples
@@ -73,8 +77,10 @@ Run from the repo *root* folder:
     ```
 
 ---
-#### 2. Terraform AWS EC2 (35 points)**: 
+#### 2. Terraform AWS EC2 (35 points)**:
+
 **Create 3 Ubuntu EC2 instances with supplied USERDATA in** *public subnet a,b and c*
+
     * (10 Points) Implement an automatic adjustable provisioning method
     * (10 Points) EC2s run supplied cloud-init correctly
     * (5  Points) AMI uses the latest amazon/canonical AMI at apply stage
@@ -82,6 +88,7 @@ Run from the repo *root* folder:
     * (5  Points) Outputs added for ssh private/public keys used
 
 ##### 2.2. To Mark this section we will:
+
   * check that 3 EC2 instances have been created
   * check what AZ each EC2 is created in for `aws_instance` resource
   * check if the EC2 is via a method *not* using `aws_instance` and provisioning values
@@ -94,13 +101,16 @@ Run from the repo *root* folder:
 
 ---
 #### 3. **Terraform Module Calls (20 points)**
+
 **Use a Terraform module to manage AWS resources**
+
     * (5 Points) Ensure that common settings are predefined for the modules.
     * (5 points) Keep the modules either within the project *or*
     * (5+5 points) Reference repositories as needed for modules. 
     * (5 points) Use specific versions of modules in the setup.
 
 ##### 3.1. To Mark this section we will:
+
   * check module for default variable values, and what variables available
   * check if module code is referenced locally or 
   * check if another method is used to reference a module
@@ -109,12 +119,15 @@ Run from the repo *root* folder:
 ---
 
 #### 4. **Basic Ansible Playbook (15 points)**
+
 **Write a basic Ansible playbook to create a dummy file with permissions in /opt.**
+
     * (5 Points) Ansible playbook correctly creates a file on the EC2 instances with linux permissions of 664 or rw-rw-r-- in /opt folder.
     * (5 points) The playbook is idempotent (i.e., running it multiple times does not create duplicate files).
     * (5 points) Ansible code uses a role for the create dummy file tasks, with parameters for the filename
 
 ##### 4.1. To Mark this section we will:
+
   * check ansible code for dummy tasks
   * check permissions locally on EC2 (if ssh keys available)
   * rerun `ansible-playbook /opt/<repo name>/ansible/startup.yml`
@@ -124,11 +137,14 @@ Run from the repo *root* folder:
 ---
 
 #### 5. **Documentation (10 points)**
+
 **Document the steps to provision the resources and execute the tests**
+
     * (5 Points) Clear examples of what to run, and what order
     * (5 points) tf code and variables is documented
 
 ##### 5.1. To Mark this section we will:
+
   * check for any `*.md` files in the root of the repo for further instructions
   * check any additional code supplied has `# comments` and the content
   * check any auto-generated docs if available
