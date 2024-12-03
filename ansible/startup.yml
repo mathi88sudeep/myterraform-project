@@ -1,11 +1,40 @@
 ---
-- name: Update Local Ubuntu
+- name: Basic Automation Playbook
   hosts: localhost
+  become: true  # Use sudo to execute tasks
 
   tasks:
-  - name: Set TimeZone to Australia/Brisbane
-    become: true
-    timezone:
-      name: Australia/Brisbane
+    - name: Update all packages
+      apt:
+        update_cache: yes
+        upgrade: dist
 
-# Create your dummy file creation code here or use a role
+    - name: Install necessary packages
+      apt:
+        name: 
+          - git
+          - nginx
+        state: latest
+
+    - name: Create a new user
+      user:
+        name: deployer
+        state: present
+        groups: sudo
+
+    - name: Deploy a simple configuration file
+      copy:
+        dest: /etc/example.conf
+        content: |
+          # Example Configuration
+          setting1=value1
+          setting2=value2
+        owner: root
+        group: root
+        mode: '0644'
+
+    - name: Start and enable nginx service
+      service:
+        name: nginx
+        state: started
+        enabled: true
